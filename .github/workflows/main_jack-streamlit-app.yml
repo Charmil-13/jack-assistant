@@ -64,8 +64,9 @@ jobs:
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         with:
           app-name: 'jack-streamlit-app'
           slot-name: 'Production'
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C908FB52AFE34168B89912FF404BA747 }}
