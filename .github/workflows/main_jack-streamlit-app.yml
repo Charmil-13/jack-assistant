@@ -65,17 +65,16 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-      
-      - name: 'Deploy to Azure Web App'
-        uses: azure/webapps-deploy@v3
-        id: deploy-to-webapp
-      
+
       - name: Configure Secrets
         run: |
           mkdir -p ~/.streamlit
           echo "[secrets]" > ~/.streamlit/secrets.toml
           echo "OPENAI_API_KEY = '${{ secrets.OPENAI_API_KEY }}'" >> ~/.streamlit/secrets.toml
-          
+      
+      - name: 'Deploy to Azure Web App'
+        uses: azure/webapps-deploy@v3
+        id: deploy-to-webapp          
         with:
           app-name: 'jack-streamlit-app'
           slot-name: 'Production'
