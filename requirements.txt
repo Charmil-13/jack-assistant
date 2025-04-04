@@ -3,4 +3,4 @@ openai==1.2.4
 python-dotenv
 PyPDF2
 pandas
-docx
+python-docx
