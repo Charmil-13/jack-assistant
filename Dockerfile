@@ -25,4 +25,4 @@ COPY . .
 EXPOSE 8502
 
 # Run Streamlit with config
-CMD ["streamlit", "run", "app_alex.py", "--server.port=8502", "--server.enableCORS=false", "--server.enableXsrfProtection=false"]
+CMD ["streamlit", "run", "jack.py", "--server.port=8502", "--server.enableCORS=false", "--server.enableXsrfProtection=false"]
