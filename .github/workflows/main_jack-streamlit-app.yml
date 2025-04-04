@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v2
       with:
         registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_b1501d9b244945a083ff0782e8f4c92b }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_1763c4a3e3c2487a91823108e64184fb }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_350dba2442104b409ce99b449d2a2d16 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_c532927540f14ad3b6e0a59b82aad2e9 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_b1501d9b244945a083ff0782e8f4c92b }}/appsvc/staticsite:${{ github.sha }}
+        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_350dba2442104b409ce99b449d2a2d16 }}/appsvc/staticsite:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'jack-streamlit-app'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_7b006dc43960474f96367da4abca0e34 }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_b1501d9b244945a083ff0782e8f4c92b }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_fb70aa34149d4b4eb3738e662cb2b47e }}
+        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_350dba2442104b409ce99b449d2a2d16 }}/appsvc/staticsite:${{ github.sha }}'
