@@ -25,18 +25,19 @@ jobs:
           python-version: '3.10'
 
       - name: Create and start virtual environment
-        env:
-            OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           python -m venv venv
           source venv/bin/activate
       
       - name: Install dependencies
-        env:
-            OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      - name: Configure Secrets
+        run: |
+          mkdir -p ~/.streamlit
+          echo "[secrets]" > ~/.streamlit/secrets.toml
+          echo "OPENAI_API_KEY = '${{ secrets.OPENAI_API_KEY }}'" >> ~/.streamlit/secrets.toml
 
       - name: Zip artifact for deployment
         run: zip release.zip ./* -r
@@ -68,8 +69,13 @@ jobs:
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      
+      - name: Configure Secrets
+        run: |
+          mkdir -p ~/.streamlit
+          echo "[secrets]" > ~/.streamlit/secrets.toml
+          echo "OPENAI_API_KEY = '${{ secrets.OPENAI_API_KEY }}'" >> ~/.streamlit/secrets.toml
+          
         with:
           app-name: 'jack-streamlit-app'
           slot-name: 'Production'
