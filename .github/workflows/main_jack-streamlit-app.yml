@@ -31,10 +31,6 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r requirements.txt
-
-      - name: API Key
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
@@ -71,4 +67,5 @@ jobs:
         with:
           app-name: 'jack-streamlit-app'
           slot-name: 'Production'
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C908FB52AFE34168B89912FF404BA747 }}
