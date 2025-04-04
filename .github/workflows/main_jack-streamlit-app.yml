@@ -31,6 +31,10 @@ jobs:
       
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: API Key
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
@@ -60,11 +64,6 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-
-      - name: API Key
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-
       
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v3
