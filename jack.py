@@ -10,13 +10,13 @@ import pandas as pd
 from typing import Optional, Dict, List, Any
 
 # Load environment variables
-load_dotenv()
+# load_dotenv()
 
 
 class SkillAssessmentAgent:
     def __init__(self):
         """Initialize the Skill Assessment Agent"""
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        self.client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
     def _extract_text_from_pdf(self, file) -> str:
         """Extract text from PDF file"""
