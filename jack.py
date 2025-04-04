@@ -16,7 +16,8 @@ from typing import Optional, Dict, List, Any
 class SkillAssessmentAgent:
     def __init__(self):
         """Initialize the Skill Assessment Agent"""
-        self.client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
+        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY", None)
+)
 
     def _extract_text_from_pdf(self, file) -> str:
         """Extract text from PDF file"""
@@ -394,7 +395,7 @@ def main():
     )
 
     # API Key Validation
-    if not st.secrets["OPENAI_API_KEY"]:
+    if not os.getenv("OPENAI_API_KEY", None):
         st.error(
             "⚠️ OpenAI API Key not found. Please set your API key in the .env file."
         )
