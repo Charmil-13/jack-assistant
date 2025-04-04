@@ -394,7 +394,7 @@ def main():
     )
 
     # API Key Validation
-    if not os.getenv("OPENAI_API_KEY"):
+    if not st.secrets["OPENAI_API_KEY"]:
         st.error(
             "⚠️ OpenAI API Key not found. Please set your API key in the .env file."
         )
