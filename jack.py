@@ -10,7 +10,7 @@ import pandas as pd
 from typing import Optional, Dict, List, Any
 
 # Load environment variables
-# load_dotenv()
+load_dotenv()
 
 
 class SkillAssessmentAgent:
