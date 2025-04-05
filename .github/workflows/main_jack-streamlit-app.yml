@@ -63,7 +63,7 @@ jobs:
 
       - name: Configure Secrets
         run: |
-          echo "OPENAI_API_KEY = '${{ secrets.OPENAI_API_KEY }}'" >> .env
+          echo "OPENAI_API_KEY=\"${{ secrets.OPENAI_API_KEY }}\"" >> .env
 
       
       - name: 'Deploy to Azure Web App'
